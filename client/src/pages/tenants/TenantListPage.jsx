@@ -51,7 +51,7 @@ const TenantModal = ({ open, tenant, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }
@@ -197,7 +197,7 @@ const TenantListPage = () => {
       message.success('Đã xóa khách thuê');
       fetchTenants(search);
     } catch (err) {
-      message.error(err.response?.data?.message || 'Xóa thất bại');
+      message.error(err.message || 'Xóa thất bại');
     }
   };
 

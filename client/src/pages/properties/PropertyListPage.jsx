@@ -144,7 +144,7 @@ const PropertyListPage = () => {
       message.success('Đã xóa cơ sở');
       fetchProperties();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Xóa thất bại');
+      message.error(err.message || 'Xóa thất bại');
     }
   };
 

@@ -77,7 +77,7 @@ const CreateInvoiceModal = ({ open, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }
@@ -216,7 +216,7 @@ const BulkCreateModal = ({ open, onClose, onSuccess }) => {
       message.success(`Thành công: ${res.data.success?.length}, Lỗi: ${res.data.failed?.length}`);
       onSuccess();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Lỗi');
+      message.error(err.message || 'Lỗi');
     } finally {
       setLoading(false);
     }
@@ -279,7 +279,7 @@ const EditInvoiceModal = ({ open, invoice, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }
@@ -405,7 +405,7 @@ const PayModal = ({ open, invoice, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }
@@ -549,7 +549,7 @@ const InvoiceListPage = () => {
       message.success('Đã hủy hóa đơn');
       fetchInvoices(filterStatus);
     } catch (err) {
-      message.error(err.response?.data?.message || 'Hủy thất bại');
+      message.error(err.message || 'Hủy thất bại');
     }
   };
 

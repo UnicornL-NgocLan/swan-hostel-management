@@ -130,7 +130,7 @@ const RoomModal = ({ open, room, floors, propertyId, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }
@@ -221,7 +221,7 @@ const FloorManagementModal = ({ open, propertyId, floors, onClose, refreshFloors
       setFloorName('');
       refreshFloors();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }
@@ -233,7 +233,7 @@ const FloorManagementModal = ({ open, propertyId, floors, onClose, refreshFloors
       message.success('Xóa tầng thành công');
       refreshFloors();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra (Tầng có thể đang chứa phòng)');
+      message.error(err.message || 'Có lỗi xảy ra (Tầng có thể đang chứa phòng)');
     }
   };
 
@@ -335,7 +335,7 @@ const RoomListPage = () => {
       message.success('Cập nhật trạng thái thành công');
       refreshRooms();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     }
   };
 

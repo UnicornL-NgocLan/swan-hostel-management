@@ -22,19 +22,30 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor — xử lý lỗi 401
+// Response interceptor — xử lý lỗi 401 và trích xuất message từ server
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Token hết hạn hoặc không hợp lệ
       localStorage.removeItem('token');
       localStorage.removeItem('user');
-      // Redirect về login (không dùng navigate vì đây là ngoài React component)
       if (!window.location.pathname.includes('/login')) {
         window.location.href = '/login';
       }
     }
+
+    // Trích xuất message từ server response và gắn trực tiếp vào error
+    // Sau này chỉ cần dùng err.message trong các catch block
+    const serverMessage = error.response?.data?.message;
+    const serverErrors = error.response?.data?.errors;
+
+    if (serverMessage) {
+      error.message = serverErrors?.length
+        ? `${serverMessage} — ${serverErrors.map(e => e.message).join(', ')}`
+        : serverMessage;
+    }
+    // Nếu không có response (network error), giữ nguyên message mặc định của axios
+
     return Promise.reject(error);
   }
 );

@@ -92,7 +92,7 @@ const MeterReadingPage = () => {
       const res = await meterApi.getReadings(room._id, billingPeriod);
       setExistingReadings(prev => ({ ...prev, [room._id]: res.data || [] }));
     } catch (err) {
-      message.error(err.response?.data?.message || 'Lưu thất bại');
+      message.error(err.message || 'Lưu thất bại');
     } finally {
       setSaving(false);
     }

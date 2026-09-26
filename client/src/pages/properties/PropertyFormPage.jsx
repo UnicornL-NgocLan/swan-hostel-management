@@ -56,7 +56,7 @@ const PropertyFormPage = () => {
       setFloorName('');
       fetchFloors();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setFloorLoading(false);
     }
@@ -68,7 +68,7 @@ const PropertyFormPage = () => {
       message.success('Xóa tầng thành công');
       fetchFloors();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra (Tầng có thể đang chứa phòng)');
+      message.error(err.message || 'Có lỗi xảy ra (Tầng có thể đang chứa phòng)');
     }
   };
 
@@ -84,7 +84,7 @@ const PropertyFormPage = () => {
       }
       navigate('/properties');
     } catch (err) {
-      const msg = err.response?.data?.message || 'Có lỗi xảy ra';
+      const msg = err.message || 'Có lỗi xảy ra';
       message.error(msg);
     } finally {
       setLoading(false);

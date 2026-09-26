@@ -32,7 +32,7 @@ const CreateExpenseModal = ({ open, onClose, onSuccess, properties }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }

@@ -43,7 +43,7 @@ const CheckoutModal = ({ open, contract, onClose, onSuccess }) => {
       setCurrentStep(1);
     } catch (err) {
       if (err.name === 'ValidationError') return;
-      message.error(err.response?.data?.message || 'Lỗi khi tính toán');
+      message.error(err.message || 'Lỗi khi tính toán');
     } finally {
       setLoading(false);
     }
@@ -69,7 +69,7 @@ const CheckoutModal = ({ open, contract, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi khi trả phòng');
+      message.error(err.message || 'Có lỗi khi trả phòng');
     } finally {
       setLoading(false);
     }

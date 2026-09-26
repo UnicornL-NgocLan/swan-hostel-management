@@ -72,15 +72,8 @@ const CreateContractModal = ({ open, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      const errData = err.response?.data;
-      // Hiển thị chi tiết lỗi validation
-      if (errData?.errors && errData.errors.length > 0) {
-        const detail = errData.errors.map(e => `${e.field}: ${e.message}`).join(', ');
-        message.error(`${errData.message} — ${detail}`);
-      } else {
-        message.error(errData?.message || 'Có lỗi xảy ra');
-      }
-      console.error('Contract create error:', errData || err);
+      message.error(err.message || 'Có lỗi xảy ra');
+      console.error('Contract create error:', err);
     } finally {
       setLoading(false);
     }
@@ -253,7 +246,7 @@ const EditContractModal = ({ open, contract, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }
@@ -350,7 +343,7 @@ const TerminateModal = ({ open, contract, onClose, onSuccess }) => {
       onSuccess();
       onClose();
     } catch (err) {
-      message.error(err.response?.data?.message || 'Có lỗi xảy ra');
+      message.error(err.message || 'Có lỗi xảy ra');
     } finally {
       setLoading(false);
     }
@@ -481,7 +474,7 @@ const ContractListPage = () => {
       message.success('Đã hủy hợp đồng thành công');
       fetchContracts(filterStatus);
     } catch (err) {
-      message.error(err.response?.data?.message || 'Lỗi khi hủy hợp đồng');
+      message.error(err.message || 'Lỗi khi hủy hợp đồng');
     }
   };
 
