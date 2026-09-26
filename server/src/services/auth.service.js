@@ -54,18 +54,27 @@ const getMe = async (userId) => {
 };
 
 /**
- * Seed admin user nếu chưa có
+ * Seed admin user nếu chưa có (idempotent — an toàn gọi nhiều lần)
  */
 const seedAdmin = async () => {
-  const adminExists = await User.findOne({ role: 'ADMIN' });
-  if (!adminExists) {
-    await User.create({
-      username: 'admin',
-      passwordHash: 'admin123',
-      fullName: 'Quản trị viên',
-      role: 'ADMIN',
-    });
-    console.log('✅ Admin user seeded: admin / admin123');
+  try {
+    const existing = await User.findOne({ username: 'admin' });
+    if (!existing) {
+      await User.create({
+        username: 'admin',
+        passwordHash: 'admin123',
+        fullName: 'Quản trị viên',
+        role: 'ADMIN',
+      });
+      console.log('✅ Admin user seeded: admin / admin123');
+    }
+  } catch (err) {
+    // Bỏ qua lỗi duplicate key (11000) — admin đã tồn tại từ lần chạy trước
+    if (err.code === 11000) {
+      console.log('ℹ️  Admin user đã tồn tại, bỏ qua seed.');
+    } else {
+      throw err;
+    }
   }
 };
 

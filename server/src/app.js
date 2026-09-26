@@ -19,8 +19,13 @@ app.use(helmet());
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow any localhost origin during dev, or match CLIENT_URL
-      if (!origin || origin.startsWith('http://localhost:') || origin === process.env.CLIENT_URL) {
+      const allowedOrigins = [
+        process.env.CLIENT_URL,
+        'https://swan-hostel-management-1.onrender.com',
+      ].filter(Boolean);
+
+      // Cho phép localhost (dev) hoặc các domain trong danh sách
+      if (!origin || origin.startsWith('http://localhost:') || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
         callback(new Error('Not allowed by CORS'));
