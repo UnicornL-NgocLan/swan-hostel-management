@@ -1,0 +1,76 @@
+// src/constants/index.js
+
+const ROLES = {
+  ADMIN: 'ADMIN',
+  USER: 'USER',
+};
+
+const ROOM_STATUS = {
+  AVAILABLE: 'AVAILABLE',
+  RESERVED: 'RESERVED',
+  OCCUPIED: 'OCCUPIED',
+  MAINTENANCE: 'MAINTENANCE',
+};
+
+const CONTRACT_STATUS = {
+  ACTIVE: 'ACTIVE',
+  TERMINATED: 'TERMINATED',
+  VOID: 'VOID',
+};
+
+const INVOICE_STATUS = {
+  DRAFT: 'DRAFT',
+  ISSUED: 'ISSUED',
+  PARTIAL: 'PARTIAL',
+  PAID: 'PAID',
+  OVERDUE: 'OVERDUE',
+  VOID: 'VOID',
+};
+
+const PAYMENT_METHOD = {
+  CASH: 'CASH',
+  TRANSFER: 'TRANSFER',
+};
+
+const DEPOSIT_STATUS = {
+  HELD: 'HELD',
+  REFUNDED: 'REFUNDED',
+  DEDUCTED: 'DEDUCTED',
+};
+
+const METER_TYPE = {
+  ELECTRICITY: 'ELECTRICITY',
+  WATER: 'WATER',
+};
+
+const PRICING_TYPE = {
+  FIXED: 'FIXED',
+  TIERED: 'TIERED',
+};
+
+const BILLING_TYPE = {
+  FIXED: 'FIXED',       // Giá cố định mỗi tháng
+  PER_PERSON: 'PER_PERSON', // Theo đầu người
+};
+
+const AUDIT_ACTIONS = {
+  CREATE: 'CREATE',
+  UPDATE: 'UPDATE',
+  DELETE: 'DELETE',
+  PAYMENT: 'PAYMENT',
+  CHECKOUT: 'CHECKOUT',
+  VOID: 'VOID',
+};
+
+module.exports = {
+  ROLES,
+  ROOM_STATUS,
+  CONTRACT_STATUS,
+  INVOICE_STATUS,
+  PAYMENT_METHOD,
+  DEPOSIT_STATUS,
+  METER_TYPE,
+  PRICING_TYPE,
+  BILLING_TYPE,
+  AUDIT_ACTIONS,
+};

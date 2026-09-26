@@ -1,0 +1,40 @@
+// src/utils/response.utils.js
+
+/**
+ * Trả về response thành công chuẩn
+ */
+const successResponse = (res, data = null, message = 'Success', statusCode = 200) => {
+  return res.status(statusCode).json({
+    success: true,
+    message,
+    data,
+  });
+};
+
+/**
+ * Trả về response lỗi chuẩn
+ */
+const errorResponse = (res, message = 'Internal server error', statusCode = 500, errors = null) => {
+  const response = {
+    success: false,
+    message,
+  };
+  if (errors) {
+    response.errors = errors;
+  }
+  return res.status(statusCode).json(response);
+};
+
+/**
+ * Trả về response paginated
+ */
+const paginatedResponse = (res, data, pagination, message = 'Success') => {
+  return res.status(200).json({
+    success: true,
+    message,
+    data,
+    pagination,
+  });
+};
+
+module.exports = { successResponse, errorResponse, paginatedResponse };
